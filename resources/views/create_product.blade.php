@@ -12,31 +12,30 @@
     <title>Hello, world!</title>
 </head>
 <body>
-<h1 class="text-center">Products List</h1>
-<a href="{{route('create-product')}}" class="btn btn-success float-end">Create Product</a>
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col">#</th>
-        <th scope="col">Title</th>
-        <th scope="col">Description</th>
-                <th scope="col">Action</th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach($products as $key=>$product)
-        <tr>
-            <td scope="row">{{ ++$key }}</td>
-            <td scope="row">{{ $product->title }}</td>
-            <td scope="row">{{ $product->description }}</td>
-            <td scope="row"><a href="{{ route('destroy-product',$product->id) }}" class="btn btn-danger">Delete</a></td>
-        </tr>
-    @endforeach
-    </tbody>
-</table>
-<div class="d-flex justify-content-center">
-    {!! $products->links() !!}
+<div class="container">
+    <h1 class="text-center">Create Product</h1>
+    <form method="post" action="{{ route('store-product') }}">
+        @csrf
+        <fieldset>
+            <legend>Create Product</legend>
+            <div class="mb-3">
+                <label for="disabledTextInput" class="form-label">Product Name</label>
+                <input type="text" name="title" class="form-control" placeholder="Product Name">
+            </div>
+            <div class="mb-3">
+                <label for="disabledTextInput" class="form-label">Product SKU</label>
+                <input type="text" name="sku" class="form-control" placeholder="Product SKU">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                <textarea class="form-control" name="description" rows="3"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </fieldset>
+    </form>
 </div>
+
 <!-- Optional JavaScript; choose one of the two! -->
 
 <!-- Option 1: Bootstrap Bundle with Popper -->
